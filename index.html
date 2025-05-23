@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <section class="hero">
+        <h1>Welcome to Techie's Plot</h1>
+        <p>Where technology meets delicious milkshakes and snacks. The perfect spot for tech enthusiasts to relax and refuel.</p>
+        <a href="#" class="btn">Explore Our Menu</a>
+    </section>
+    
+    <div class="product-slots">
+        <!-- Slot 1 - Milkshake Special -->
+        <div class="slot slot-1">
+            <div class="slot-header">
+                <img src="{{ url_for('serve_images', filename=products[0]['image']) }}" alt="{{ products[0]['name'] }}" class="slot-image">
+                <div class="slot-overlay">
+                    <h3>{{ products[0]['name'] }}</h3>
+                </div>
+            </div>
+            <div class="slot-body">
+                <h3 class="slot-title">{{ products[0]['name'] }}</h3>
+                <p class="slot-price">${{ "%.2f"|format(products[0]['price']) }}</p>
+                <p class="slot-desc">{{ products[0]['description'] }}</p>
+            </div>
+        </div>
+        
+        <!-- Slot 2 - Featured Product -->
+        <div class="slot slot-2">
+            <div class="slot-header">
+                <img src="{{ url_for('serve_images', filename=products[3]['image']) }}" alt="{{ products[3]['name'] }}" class="slot-image">
+                <div class="slot-overlay">
+                    <h3>{{ products[3]['name'] }}</h3>
+                </div>
+            </div>
+            <div class="slot-body">
+                <h3 class="slot-title">{{ products[3]['name'] }}</h3>
+                <p class="slot-price">${{ "%.2f"|format(products[3]['price']) }}</p>
+                <p class="slot-desc">{{ products[3]['description'] }}</p>
+            </div>
+        </div>
+        
+        <!-- Slot 3 - New Arrival -->
+        <div class="slot slot-3">
+            <div class="slot-header">
+                <img src="{{ url_for('serve_images', filename=products[5]['image']) }}" alt="{{ products[5]['name'] }}" class="slot-image">
+                <div class="slot-overlay">
+                    <h3>{{ products[5]['name'] }}</h3>
+                </div>
+            </div>
+            <div class="slot-body">
+                <h3 class="slot-title">{{ products[5]['name'] }}</h3>
+                <p class="slot-price">${{ "%.2f"|format(products[5]['price']) }}</p>
+                <p class="slot-desc">{{ products[5]['description'] }}</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="testimonials">
+        <h2 style="text-align: center; margin-bottom: 1.5rem; color: var(--primary);">What Our Customers Say</h2>
+        <div class="testimonial-scroll">
+            {% for testimonial in testimonials %}
+                <div class="testimonial">
+                    <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                    <p class="testimonial-author">- {{ testimonial.name }}</p>
+                </div>
+            {% endfor %}
+            <!-- Duplicate to create infinite scroll effect -->
+            {% for testimonial in testimonials %}
+                <div class="testimonial">
+                    <p class="testimonial-text">"{{ testimonial.text }}"</p>
+                    <p class="testimonial-author">- {{ testimonial.name }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
